@@ -1,70 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chak iik´ - Tu App de Seguridad</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Chak iik' - Comunicación inmediata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #00CDB4;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+        
+        /* Logo section */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon span {
+            color: #00CDB4;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Hero section */
+        .hero-container {
+            margin-top: 16px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Play button */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-left: 20px solid white;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+        
+        /* Text content */
+        .text-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 32px;
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+        
+        /* Download button */
+        .download-button-container {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+        }
+        
+        .download-button {
+            background-color: #00CDB4;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .download-button:hover {
+            background-color: #00b9a2;
+        }
+        
+        /* About section */
+        .about-section {
+            margin-top: 32px;
+            background-color: #000;
+            border-radius: 24px;
+            overflow: hidden;
+            padding-bottom: 24px;
+        }
+        
+        .about-header {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .about-logo-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .about-app {
+            display: block;
+            font-size: 16px;
+            margin-top: -5px;
+        }
+        
+        .about-image-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 0 auto;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .about-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        .about-description {
+            font-size: 18px;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px;
+            background-color: #000;
+            color: white;
+        }
+        
+        .footer-section {
+            flex: 1;
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .footer-content {
+            font-size: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-icon span {
+            color: #000;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title, .about-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle, .about-description {
+                font-size: 16px;
+            }
+            
+            .text-content, .about-overlay {
+                padding: 24px;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .download-button {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+            
+            .download-button-container {
+                bottom: 24px;
+                right: 24px;
+            }
+            
+            .about-title {
+                font-size: 28px;
+            }
+        }
+        
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="public/assets/images/logo.png" alt="Logo de Chakiik" width="250">
-                <h1></h1>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <div class="logo-icon">
+                <span>C</span>
             </div>
-            <ul>
-                <li><a href="#features">Funciones</a></li>
-                <li><a href="#about">Quiénes Somos</a></li>
-                <li><a href="#download">Descargar</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="hero">
-        <div class="hero-content">
-            <h2>Seguridad en tus manos</h2>
-            <p>Tu app de seguimiento de huracanes y asistencia en emergencias.</p>
-            <a href="#download" class="btn">Descargar Chak iik' para Android</a>
-            <a href="downloads/Chakiik.apk" download>
-            </a>
+            <h1 class="logo-text">Chak iik' App</h1>
         </div>
-    </section>
-
-    <section id="features">
-        <h2>Funciones Principales</h2>
-        <div class="features-grid">
-            <div class="feature">
-                <!-- Agrega una imagen aquí -->
-                <h3>Mapas en Tiempo Real</h3>
-                <p>Visualiza diferentes tipos de mapas con información actualizada.</p>
+        
+        <!-- Hero Section -->
+        <div class="hero-container">
+            <img src="fotoA.png" alt="Cielo" class="hero-image" >
+            <div class="overlay"></div>
+            
+            <!-- Play Button -->
+            <button class="play-button">
+                <div class="play-icon"></div>
+            </button>
+            
+            <!-- Text Content -->
+            <div class="text-content">
+                <h2 class="hero-title">Comunicación inmediata y mapas en tiempo real</h2>
+                <p class="hero-subtitle">Mensajes y llamadas gratis de forma simple, confiable y privada, disponibles en todo el mundo.</p>
             </div>
-            <div class="feature">
-                <!-- Agrega una imagen aquí -->
-                <h3>Red de Ayuda</h3>
-                <p>Conéctate con rescatistas y voluntarios en tu zona.</p>
-            </div>
-            <div class="feature">
-                <!-- Agrega una imagen aquí -->
-                <h3>Información de Seguridad</h3>
-                <p>Accede a guías y consejos de prevención.</p>
+            
+            <!-- Download Button -->
+            <div class="download-button-container">
+                <button class="download-button">Descargar</button>
             </div>
         </div>
-    </section>
-
-    <section id="about">
-        <h2>Quiénes Somos</h2>
-        <p>Chak iik´ es una aplicación desarrollada para brindar seguridad y asistencia inmediatanen situaciones de emergencias ante fenomenos climaticos.</p>
-    </section>
-
-    <section id="download">
-        <h2>Descarga Chakiik</h2>
-        <p>Disponible para dispositivos Android.</p>
-        <a href="#" class="btn">Descargar APK</a> <!-- Reemplaza # con el enlace real -->
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Chakiik. Todos los derechos reservados.</p>
-    </footer>
+        
+        <!-- About Section -->
+        <div class="about-section">
+            <div class="about-header">
+                <div class="logo-icon">
+                    <span>C</span>
+                </div>
+                <h3 class="about-logo-text">
+                    Chak iik'
+                    <span class="about-app">App</span>
+                </h3>
+            </div>
+            
+            <div class="about-image-container">
+                <img src="hurricane.jpg" alt="Huracán desde el espacio" class="about-image">
+                <div class="about-overlay">
+                    <h2 class="about-title">¿Quienes somos?</h2>
+                    <p class="about-description">
+                        Chak iik´ App es creada a partir de 3 estudiantes del cbits72 
+                        con muchos sueños y metas que cumplir. ¡Ayúdanos a 
+                        que nuesto proyecto sea más grande!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div class="footer-section">
+                    <h4 class="footer-title">Telefono</h4>
+                    <p class="footer-content">(+52) 983-700-6225</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Correo electronico</h4>
+                    <p class="footer-content">programadorespotaxies@gmail.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Social</h4>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <span>f</span>
+                        </div>
+                        <div class="social-icon">
+                            <span>t</span>
+                        </div>
+                        <div class="social-icon">
+                            <span>i</span>
+                        </div>
+                    </div>
+                    <p class="footer-content">Chakiik_App</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
